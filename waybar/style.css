@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  border: none;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+  font-family: "Jetbrains Mono", monospace;
+  font-size: 16px;
+}
+window#waybar {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0;
+}
+#window {
+  color: #ffdbf1;
+  font-weight: 600;
+}
+
+.modules-left {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 0;
+}
+.modules-right {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 0;
+}
+.modules-center {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 0;
+}
+#cpu.warning,
+#memory.warning,
+#battery.warning {
+  color: #ffe49c;
+}
+#cpu.critical,
+#memory.critical,
+#battery.critical {
+  color: #ff9b94;
+}
+#cpu,
+#memory,
+#battery {
+  color: #9afcb4;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#workspaces {
+  margin: 0;
+  border-radius: 0;
+  color: black;
+}
+#workspaces button {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 10px;
+  border-radius: 0;
+  margin: 0;
+  color: #ffffff;
+}
+#workspaces button:hover {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 10px;
+  border-radius: 0;
+  margin: 0;
+  color: #ffffff;
+}
+#workspaces button.active {
+  background-color: #ffffff;
+  padding: 0 10px;
+  border-radius: 0;
+  margin: 0;
+  color: black;
+}
+#workspaces button.active:hover {
+  background-color: #ffffff;
+  padding: 0 10px;
+  border-radius: 0;
+  margin: 0;
+  color: #ffffff;
+}
+#clock {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#tray {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#battery {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#pulseaudio {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#network {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#battery {
+  color: #9afcb4;
+}
+#battery.warning {
+  color: #ffe49c;
+}
+#battery.critical {
+  color: #ff9b94;
+}
+#battery.charging {
+  color: #63dbb1;
+}
