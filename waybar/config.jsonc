@@ -1,0 +1,71 @@
+{
+  "height": 16,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "layer": "top",
+  "exclusive": true,
+  "modules-left": ["hyprland/workspaces", "cpu", "memory"],
+  "modules-center": [""],
+  "modules-right": ["tray", "network", "pulseaudio", "battery", "clock"],
+
+  "cpu": {
+    "interval": 1,
+    "format": "  {usage}%",
+    "states": {
+      "warning": 60,
+      "critical": 85
+    },
+    "on-click": "kitty -e htop"
+  },
+
+  "memory": {
+    "interval": 1,
+    "format": "  {used:.1f}G",
+    "states": {
+      "warning": 60,
+      "critical": 85
+    },
+    "on-click": "kitty -e htop"
+  },
+  
+"battery": {
+    "bat": "BAT0",
+    "interval": 1,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-plugged": "{capacity}% 󱟦",
+    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+},
+
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": "muted 󰝟",
+    "scroll-step": 1,
+    "tooltip": true,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "format-icons": ["󰕿", "󰖀", "󰕾"]
+  },
+
+  "clock": {
+    "format": "{:%d/%m 󰃮  %H:%M:%S}",
+    "interval": 1,
+    "on-click": "google-chrome-stable 'http://calendar.google.com/calendar/u/0/'"
+  },
+
+  "network": {
+    "format-wifi": "{essid} 󰖩",
+    "format-ethernet": "Ethernet 󰈁",
+    "tooltip-format": "{ipaddr} - {signalStrength}%",
+    "format-linked": "{ifname} (No IP) 󱛅",
+    "format-disconnected": "Disconnected 󰖪",
+  }
+}
+}
+
