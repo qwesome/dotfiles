@@ -33,16 +33,19 @@ window#waybar {
   padding: 0;
   border-radius: 0;
 }
+#temperature.warning,
 #cpu.warning,
 #memory.warning,
 #battery.warning {
   color: #ffe49c;
 }
+#temperature.critical,
 #cpu.critical,
 #memory.critical,
 #battery.critical {
   color: #ff9b94;
 }
+#temperature,
 #cpu,
 #memory,
 #battery {
