@@ -1,100 +1,135 @@
-{
-  "height": 16,
-  "margin-top": 0,
-  "margin-left": 0,
-  "margin-right": 0,
-  "layer": "top",
-  "exclusive": true,
-  "modules-left": ["hyprland/workspaces", "cpu", "memory", "temperature"],
-  "modules-center": ["custom/lyrics"],
-  "modules-right": ["tray", "network", "pulseaudio", "battery", "clock"],
-
-  "cpu": {
-    "interval": 1,
-    "format": "  {usage}%",
-    "states": {
-      "warning": 60,
-      "critical": 85
-    },
-    "on-click": "kitty -e htop"
-  },
-
-  "temperature": {
-    "interval": 1,
-    "format": "{icon} {temperatureC}°C",
-    "tooltip-format": "{temperatureF}°F {temperatureK}°K",
-    "format-icons": ["","","","",""],
-    "states": {
-      "warning": 60,
-      "critical": 75
-    },
-    "on-click": "kitty -e htop"
-  },
-
-
-  "memory": {
-    "interval": 1,
-    "format": "  {used:.1f}G",
-    "states": {
-      "warning": 60,
-      "critical": 85
-    },
-    "on-click": "kitty -e htop"
-  },
-  
-"battery": {
-    "bat": "BAT0",
-    "interval": 1,
-    "states": {
-        "warning": 30,
-        "critical": 15
-    },
-    "format": "{capacity}% {icon}",
-    "format-full": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󰂄",
-    "format-plugged": "{capacity}% 󱟦",
-    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
-},
-
-  "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-muted": "muted 󰝟",
-    "scroll-step": 1,
-    "tooltip": true,
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol",
-    "format-icons": ["󰕿", "󰖀", "󰕾"]
-  },
-
-  "clock": {
-    "format": "{:%d/%m 󰃮  %H:%M:%S}",
-    "interval": 1,
-    "on-click": "google-chrome-stable 'http://calendar.google.com/calendar/u/1/'"
-  },
-
-"network": {
-  "interface": "wlo1",
-  "format-wifi": "{essid} 󰖩",
-  "format-ethernet": "Ethernet 󰈁",
-  "tooltip-format": "{ipaddr} - {signalStrength}%",
-  "format-linked": "{ifname} (No IP) 󱛅",
-  "format-disconnected": "Disconnected 󰖪",
-},
-  "custom/lyrics": {
-    "return-type": "json",
-    "format": "{icon} {0}",
-    "hide-empty-text": true,
-    "format-icons": {
-      "playing": "",
-      "paused": "",
-      "lyric": "",
-      "music": "󰝚",
-      "no_lyric": "",
-      "getting": "",
-    },
-    "exec-if": "which waybar-lyric",
-    "exec": "waybar-lyric --quiet",
-    "on-click": "waybar-lyric play-pause",
-  }
+* {
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  border: none;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+  font-family: "Jetbrains Mono", monospace;
+  font-size: 16px;
 }
+window#waybar {
+  border-bottom: 3px solid rgba(24, 25, 38, 0.6);
+  background-color: rgba(24, 25, 38, 0.4);
+}
+#window {
+  color: #ffdbf1;
+  font-weight: 600;
+}
+
+.modules-left {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 0;
+}
+.modules-right {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 0;
+}
+.modules-center {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 0;
+}
+#temperature.warning,
+#cpu.warning,
+#memory.warning,
+#battery.warning {
+  color: #ffe49c;
+}
+#temperature.critical,
+#cpu.critical,
+#memory.critical,
+#battery.critical {
+  color: #ff9b94;
+}
+#temperature,
+#cpu,
+#memory,
+#battery {
+  color: #9afcb4;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#workspaces {
+  margin: 0;
+  border-radius: 0;
+  color: black;
+}
+#workspaces button {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 6px;
+  border-radius: 0;
+  margin: 0;
+  color: #ffffff;
+  font-size: 8px;
+}
+#workspaces button:hover {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 6px;
+  border-radius: 0;
+  margin: 0;
+  color: #ffffff;
+  font-size: 12px;
+}
+#workspaces button.active {
+  background-color: #ffffff;
+  padding: 0 6px;
+  border-radius: 0;
+  margin: 0;
+  color: black;
+  font-size: 12px;
+}
+#workspaces button.active:hover {
+  background-color: #ffffff;
+  padding: 0 6px;
+  border-radius: 0;
+  margin: 0;
+  color: #ffffff;
+  font-size: 12px;
+}
+#clock {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#tray {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#battery {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#pulseaudio {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#network {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0 12px;
+  font-size: 16px;
+}
+#battery {
+  color: #9afcb4;
+}
+#battery.warning {
+  color: #ffe49c;
+}
+#battery.critical {
+  color: #ff9b94;
+}
+#battery.charging {
+  color: #63dbb1;
 }
