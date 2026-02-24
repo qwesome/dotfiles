@@ -6,7 +6,7 @@
   "layer": "top",
   "exclusive": true,
   "modules-left": ["hyprland/workspaces", "cpu", "memory", "temperature"],
-  "modules-center": [""],
+  "modules-center": ["custom/lyrics"],
   "modules-right": ["tray", "network", "pulseaudio", "battery", "clock"],
 
   "cpu": {
@@ -22,6 +22,7 @@
   "temperature": {
     "interval": 1,
     "format": "{icon} {temperatureC}°C",
+    "tooltip-format": "{temperatureF}°F {temperatureK}°K",
     "format-icons": ["","","","",""],
     "states": {
       "warning": 60,
@@ -33,7 +34,7 @@
 
   "memory": {
     "interval": 1,
-    "format": "  {used:.1f}G",
+    "format": "  {used:.1f}G",
     "states": {
       "warning": 60,
       "critical": 85
@@ -68,15 +69,32 @@
   "clock": {
     "format": "{:%d/%m 󰃮  %H:%M:%S}",
     "interval": 1,
-    "on-click": "google-chrome-stable 'http://calendar.google.com/calendar/u/0/'"
+    "on-click": "google-chrome-stable 'http://calendar.google.com/calendar/u/1/'"
   },
 
-  "network": {
-    "format-wifi": "{essid} 󰖩",
-    "format-ethernet": "Ethernet 󰈁",
-    "tooltip-format": "{ipaddr} - {signalStrength}%",
-    "format-linked": "{ifname} (No IP) 󱛅",
-    "format-disconnected": "Disconnected 󰖪",
+"network": {
+  "interface": "wlo1",
+  "format-wifi": "{essid} 󰖩",
+  "format-ethernet": "Ethernet 󰈁",
+  "tooltip-format": "{ipaddr} - {signalStrength}%",
+  "format-linked": "{ifname} (No IP) 󱛅",
+  "format-disconnected": "Disconnected 󰖪",
+},
+  "custom/lyrics": {
+    "return-type": "json",
+    "format": "{icon} {0}",
+    "hide-empty-text": true,
+    "format-icons": {
+      "playing": "",
+      "paused": "",
+      "lyric": "",
+      "music": "󰝚",
+      "no_lyric": "",
+      "getting": "",
+    },
+    "exec-if": "which waybar-lyric",
+    "exec": "waybar-lyric --quiet",
+    "on-click": "waybar-lyric play-pause",
   }
 }
 }
