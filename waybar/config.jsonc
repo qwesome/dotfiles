@@ -1,17 +1,43 @@
 {
-  "height": 16,
-  "margin-top": 0,
+  "height": 38,
+  "margin-top": 2,
   "margin-left": 0,
   "margin-right": 0,
   "layer": "top",
   "exclusive": true,
-  "modules-left": ["hyprland/workspaces", "cpu", "memory", "temperature"],
-  "modules-center": ["custom/lyrics"],
-  "modules-right": ["tray", "network", "pulseaudio", "battery", "clock"],
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "cpu",
+    "memory",
+    "temperature",
+    "network"
+  ],
+
+  "modules-center": [
+    "custom/lyrics"
+  ],
+
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "battery",
+    "clock"
+  ],
 
   "cpu": {
     "interval": 1,
-    "format": "  {usage}%",
+    "format": "{usage}%",
+    "states": {
+      "warning": 60,
+      "critical": 85
+    },
+    "on-click": "kitty -e htop"
+  },
+
+  "memory": {
+    "interval": 1,
+    "format": "{used:.1f}G",
     "states": {
       "warning": 60,
       "critical": 85
@@ -21,9 +47,15 @@
 
   "temperature": {
     "interval": 1,
-    "format": "{icon} {temperatureC}°C",
+    "format": "{temperatureC}°C",
     "tooltip-format": "{temperatureF}°F {temperatureK}°K",
-    "format-icons": ["","","","",""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "states": {
       "warning": 60,
       "critical": 75
@@ -31,70 +63,80 @@
     "on-click": "kitty -e htop"
   },
 
+  "tray": {
+  "icon-size": 20,
+  "hide-empty": true,
+  "tooltip": true
+},
 
-  "memory": {
-    "interval": 1,
-    "format": "  {used:.1f}G",
-    "states": {
-      "warning": 60,
-      "critical": 85
-    },
-    "on-click": "kitty -e htop"
-  },
-  
-"battery": {
+  "battery": {
     "bat": "BAT0",
     "interval": 1,
-    "states": {
-        "warning": 30,
-        "critical": 15
-    },
     "format": "{capacity}% {icon}",
     "format-full": "{capacity}% {icon}",
     "format-charging": "{capacity}% 󰂄",
     "format-plugged": "{capacity}% 󱟦",
-    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
-},
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
+  },
 
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-muted": "muted 󰝟",
+    "format-icons": [
+      "󰕿",
+      "󰖀",
+      "󰕾"
+    ],
     "scroll-step": 1,
     "tooltip": true,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol",
-    "format-icons": ["󰕿", "󰖀", "󰕾"]
+    "on-click-right": "pavucontrol"
+  },
+
+  "network": {
+    "interface": "wlo1",
+    "format-wifi": "{essid} 󰖩",
+    "format-ethernet": "Ethernet 󰈁",
+    "format-linked": "{ifname} (No IP) 󱛅",
+    "format-disconnected": "Disconnected 󰖪",
+    "tooltip-format": "{ipaddr} - {signalStrength}%"
   },
 
   "clock": {
-    "format": "{:%d/%m 󰃮  %H:%M:%S}",
     "interval": 1,
-    "on-click": "google-chrome-stable 'http://calendar.google.com/calendar/u/1/'"
+    "format": "{:%d/%m 󰃮  %H:%M:%S}",
+    "on-click": "google-chrome-stable http://calendar.google.com/calendar/u/1/"
   },
-
-"network": {
-  "interface": "wlo1",
-  "format-wifi": "{essid} 󰖩",
-  "format-ethernet": "Ethernet 󰈁",
-  "tooltip-format": "{ipaddr} - {signalStrength}%",
-  "format-linked": "{ifname} (No IP) 󱛅",
-  "format-disconnected": "Disconnected 󰖪",
-},
-  "custom/lyrics": {
-    "return-type": "json",
-    "format": "{icon} {0}",
-    "hide-empty-text": true,
-    "format-icons": {
-      "playing": "",
-      "paused": "",
-      "lyric": "",
-      "music": "󰝚",
-      "no_lyric": "",
-      "getting": "",
-    },
-    "exec-if": "which waybar-lyric",
-    "exec": "waybar-lyric --quiet",
-    "on-click": "waybar-lyric play-pause",
-  }
+"custom/lyrics": {
+  "return-type": "json",
+  "exec-if": "playerctl status 2>/dev/null | grep -q Playing",
+  "exec": "waybar-lyric --quiet",
+  "format": "{icon} {0}",
+  "hide-empty-text": true,
+  "format-icons": {
+    "playing": "",
+    "paused": "",
+    "lyric": "",
+    "music": "󰝚",
+    "no_lyric": "",
+    "getting": ""
+  },
+  "on-click": "waybar-lyric play-pause"
 }
 }
