@@ -121,7 +121,8 @@
   "clock": {
     "interval": 1,
     "format": "{:%d/%m 󰃮  %H:%M:%S}",
-    "on-click": "google-chrome-stable http://calendar.google.com/calendar/u/1/"
+    "on-click": "eww active-windows | grep -q \"calendar\" && eww close calendar calendar-closer || eww open-many calendar-closer calendar",
+    "tooltip": false
   },
 "custom/lyrics": {
   "return-type": "json",

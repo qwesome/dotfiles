@@ -1,0 +1,50 @@
+;; The Data Poll
+(defpoll events :interval "10m" :initial "[]" "/home/orson/.config/eww/venv/bin/python /home/orson/.config/eww/scripts/parse_ics.py")
+
+;; 1. THE INVISIBLE CLOSER WINDOW
+(defwindow calendar-closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "fg"
+  :focusable false
+  (eventbox :onclick "eww close calendar calendar-closer"
+    (box :class "closer-canvas")))
+
+;; 2. YOUR CALENDAR WINDOW
+(defwindow calendar
+  :monitor 0
+  :stacking "fg" 
+  :geometry (geometry :width "350px" :height "425px" :anchor "top right" :x "4" :y "4") 
+  (box
+    :orientation "vertical"
+    :spacing 15
+    :space-evenly false
+    :class "calendar"
+    
+    ;; header
+    (label :text "Upcoming Classes" :class "header")
+    
+    ;; scrollable list
+    (scroll
+      :vscroll true
+      :hscroll false
+      :vexpand true
+      (box
+        :orientation "vertical"
+        :spacing 8
+        :space-evenly false
+        
+        (for event in events
+          (box
+            :class "event-item"
+            :orientation "horizontal"
+            :space-evenly false
+            :spacing 12
+            (label :text "${event.time}" :class "event-time" :valign "start")
+            (label :text "${event.name}" :class "event-name" :wrap true :xalign 0)
+          )
+        )
+      )
+    )
+  )
+)
